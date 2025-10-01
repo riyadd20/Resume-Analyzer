@@ -12,6 +12,11 @@ genai.configure(api_key=api_key)
 
 app = FastAPI()
 
+# Root health check
+@app.get("/")
+def root():
+    return {"message": "Resume Analyzer API is running"}
+
 # Request Model
 class JobRequest(BaseModel):
     job_desc: str
