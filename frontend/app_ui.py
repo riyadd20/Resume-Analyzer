@@ -3,7 +3,7 @@ import requests
 import fitz  # PyMuPDF for PDF parsing
 
 # API Endpoint
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://resume-analyzer-xaf6.onrender.com"
 
 # ---------- Helper Functions ----------
 def safe_api_error(response):
