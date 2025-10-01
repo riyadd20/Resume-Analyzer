@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-from backend.bert_model import get_resume_match_scores
+from bert_model import get_resume_match_scores
 
 # Load API Key
 load_dotenv()
