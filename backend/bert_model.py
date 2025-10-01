@@ -5,7 +5,9 @@ import math
 from dotenv import load_dotenv
 
 load_dotenv()
+
 HF_API_TOKEN = os.getenv("HF_API_TOKEN")
+print("HF_API_TOKEN loaded:", HF_API_TOKEN[:6] + "..." if HF_API_TOKEN else "NOT FOUND")
 HF_HEADERS = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
 HF_MINILM_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
