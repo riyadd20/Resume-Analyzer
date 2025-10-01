@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer, util
 import math
 
-# Load models once
+# Load models
 minilm_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 mpnet_model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
 
@@ -10,8 +10,8 @@ def normalize_score(score):
     Boost cosine similarity using logistic scaling.
     This makes 0.3–0.4 map to 60–80 realistically.
     """
-    # Logistic transformation (steeper curve)
-    boosted = 1 / (1 + math.exp(-12 * (score - 0.35)))  # shift around 0.35
+    # Logistic transformation
+    boosted = 1 / (1 + math.exp(-12 * (score - 0.35)))
     return round(boosted * 100, 2)
 
 def categorize_score(score):

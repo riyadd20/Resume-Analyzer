@@ -1,11 +1,10 @@
 import streamlit as st
 import requests
-import fitz  # PyMuPDF for PDF parsing
+import fitz
 
 # API Endpoint
 BASE_URL = "https://resume-analyzer-xaf6.onrender.com"
 
-# ---------- Helper Functions ----------
 def safe_api_error(response):
     try:
         return response.json()
@@ -20,7 +19,6 @@ def extract_text_from_pdf(uploaded_file):
         text += page.get_text("text")
     return text.strip()
 
-# ---------- UI ----------
 st.title("📄 AI-Powered Job Analyzer")
 
 # Job Description
@@ -41,14 +39,14 @@ elif resume_option == "Upload PDF":
 
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# Buttons (fixed layout)
+# Buttons
 col1, col2 = st.columns(2)
 col3, col4 = st.columns(2)
 
-# Results placeholder (always below buttons)
+# Results
 result_placeholder = st.container()
 
-# ---------- Button Actions ----------
+# Buttons
 with col1:
     if st.button("Analyze Match Score", use_container_width=True):
         if job_desc.strip() == "" or resume_text.strip() == "":
@@ -60,7 +58,7 @@ with col1:
                                              json={"job_desc": job_desc, "resume_text": resume_text})
                 if response.status_code == 200:
                     scores = response.json()["scores"]
-                    st.subheader("✅ Resume Match Scores:")
+                    st.subheader("Resume Match Scores:")
 
                     # Show details
                     st.write(f"- MiniLM (cosine): {scores['MiniLM']}")

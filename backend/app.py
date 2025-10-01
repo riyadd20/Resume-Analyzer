@@ -15,9 +15,9 @@ app = FastAPI()
 # Request Model
 class JobRequest(BaseModel):
     job_desc: str
-    resume_text: str = None  # Optional if resume is uploaded separately
+    resume_text: str = None
 
-# 1️⃣ Resume Match Score (Multi-model BERT)
+# Resume Match Score (Multi-model BERT)
 @app.post("/match_score")
 def match_score(request: JobRequest):
     try:
@@ -26,7 +26,7 @@ def match_score(request: JobRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Match score error: {str(e)}")
 
-# 2️⃣ AI Resume Feedback (Gemini)
+# AI Resume Feedback (Gemini)
 @app.post("/resume_feedback")
 def resume_feedback(request: JobRequest):
     try:
@@ -44,7 +44,7 @@ def resume_feedback(request: JobRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Resume feedback error: {str(e)}")
 
-# 3️⃣ AI Resume Generator
+# AI Resume Generator
 @app.post("/generate_resume")
 def generate_resume(request: JobRequest):
     try:
@@ -65,7 +65,7 @@ def generate_resume(request: JobRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Resume generator error: {str(e)}")
 
-# 4️⃣ AI Interview Questions
+# AI Interview Questions
 @app.post("/interview_questions")
 def interview_questions(request: JobRequest):
     try:
